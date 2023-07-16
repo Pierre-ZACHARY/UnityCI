@@ -6,6 +6,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.TestTools;
 
+//https://docs.unity3d.com/Packages/com.unity.test-framework@1.1/manual/images/execution-order-unitysetup-teardown.svg
 public class PlaymodeTests
 {
     [SetUp]
@@ -27,12 +28,5 @@ public class PlaymodeTests
     public IEnumerator MonoBehaviourTest_Works()
     {
         yield return new MonoBehaviourTest<TestCPU>();
-    }
-    
-    [TearDown]
-    public void PostTest()
-    {
-        Debug.Log("PostTest");
-        Application.Quit();
     }
 }
