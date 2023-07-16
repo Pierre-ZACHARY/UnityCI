@@ -28,6 +28,7 @@ jobs:
           UNITY_LICENSE: ${{ secrets.UNITY_LICENSE }}
         with:
           githubToken: ${{ secrets.GITHUB_TOKEN }}
+          customImage: 'unityci/editor:ubuntu-2023.1.3f1-base-1.1.2'
 
       # Build
       - name: Build project
