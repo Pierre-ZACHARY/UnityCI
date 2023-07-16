@@ -50,6 +50,7 @@ jobs:
   buildForAllSupportedPlatforms:
     name: Build for ${{ matrix.targetPlatform }}
     runs-on: ubuntu-latest
+    depends-on: testAllModes
     strategy:
       fail-fast: false
       matrix:
