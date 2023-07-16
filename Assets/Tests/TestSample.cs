@@ -8,12 +8,6 @@ using UnityEngine.TestTools;
 
 public class TestSample
 {
-    [SetUp]
-    public void Setup()
-    {
-        Debug.Log("Setup");
-        SceneManager.LoadScene("SampleScene");
-    }
     
     // A Test behaves as an ordinary method
     [Test]
