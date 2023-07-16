@@ -1,10 +1,8 @@
 ﻿name: Actions 😎
-
 on: [push, pull_request]
 
 jobs:
   testAllModes:
-    permissions: write-all
     name: Test in ${{ matrix.testMode }}
     runs-on: ubuntu-latest
     strategy:
@@ -28,6 +26,8 @@ jobs:
             Library-
       - uses: game-ci/unity-test-runner@v2
         id: tests
+        env:
+          UNITY_LICENSE: ${{ secrets.UNITY_LICENSE }}
         with:
           projectPath: ${{ matrix.projectPath }}
           testMode: ${{ matrix.testMode }}
