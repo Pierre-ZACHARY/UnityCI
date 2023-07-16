@@ -13,6 +13,7 @@ jobs:
           UNITY_LICENSE: ${{ secrets.UNITY_LICENSE }}
           UNITY_EMAIL: ${{ secrets.UNITY_EMAIL }}
           UNITY_PASSWORD: ${{ secrets.UNITY_PASSWORD }}
+          UNITY_VERSION: 2023.1.3f1
       # Checkout
       - name: Checkout repository
         uses: actions/checkout@v3
@@ -34,8 +35,6 @@ jobs:
           UNITY_LICENSE: ${{ secrets.UNITY_LICENSE }}
         with:
           githubToken: ${{ secrets.GITHUB_TOKEN }}
-          customImage: 'unityci/editor:ubuntu-2023.1.3f1-base-1.1.2'
-
       # Build
       - name: Build project
         uses: game-ci/unity-builder@v2
@@ -45,8 +44,6 @@ jobs:
           UNITY_PASSWORD: ${{ secrets.UNITY_PASSWORD }}
         with:
           targetPlatform: WebGL
-          customImage: 'unityci/editor:ubuntu-2023.1.3f1-base-1.1.2'
-
       # Output
       - uses: actions/upload-artifact@v3
         with:
