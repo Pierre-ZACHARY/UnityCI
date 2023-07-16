@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using NUnit.Framework;
@@ -11,7 +12,10 @@ public class TestSample
     public void TestSampleSimplePasses()
     {
         // Use the Assert class to test conditions
-        Assert.AreEqual(Factorial(1), 1);
+        Assert.AreEqual(TestCPU.Factorial(1), 1);
+        Debug.Log("TestSampleSimplePasses");
+        Debug.Log(TestCPU.Factorial(22));
+        Assert.AreNotEqual(TestCPU.Factorial(22), 1);
     }
 
     // A UnityTest behaves like a coroutine in Play Mode. In Edit Mode you can use

@@ -11,13 +11,16 @@ public class TestCPU : MonoBehaviour
            
     }
 
-    void Factorial(int n)
+    public static int Factorial(int n)
     {
         int result = 1;
         for (int i = 1; i <= n; i++)
         {
             result *= i;
         }
+
+        Debug.Log(result);
+        return result;
     }
     // Update is called once per frame
     void Update()
