@@ -4,7 +4,8 @@
     "references": [
         "UnityEngine.TestRunner",
         "UnityEditor.TestRunner",
-        "TestCPUAssembly"
+        "TestCPUAssembly",
+        "Unity.TestTools.CodeCoverage.Editor.Compatibility"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],

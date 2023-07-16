@@ -1,26 +1,38 @@
 using System.Collections;
 using System.Collections.Generic;
 using NUnit.Framework;
+using NUnit.Framework.Internal;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.TestTools;
 
 public class PlaymodeTests
 {
+    [SetUp]
+    public void Setup()
+    {
+        Debug.Log("Setup");
+        SceneManager.LoadScene("SampleScene");
+    }
     // A Test behaves as an ordinary method
     [Test]
     public void PlaymodeTestsSimplePasses()
     {
         // Use the Assert class to test conditions
         Assert.AreEqual(TestCPU.Factorial(1), 1);
+        Assert.AreNotEqual(TestCPU.Factorial(10000000), 1);
     }
-
-    // A UnityTest behaves like a coroutine in Play Mode. In Edit Mode you can use
-    // `yield return null;` to skip a frame.
+    
     [UnityTest]
-    public IEnumerator PlaymodeTestsWithEnumeratorPasses()
+    public IEnumerator MonoBehaviourTest_Works()
     {
-        // Use the Assert class to test conditions.
-        // Use yield to skip a frame.
-        yield return null;
+        yield return new MonoBehaviourTest<TestCPU>();
+    }
+    
+    [TearDown]
+    public void PostTest()
+    {
+        Debug.Log("PostTest");
+        Application.Quit();
     }
 }

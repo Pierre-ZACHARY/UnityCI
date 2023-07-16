@@ -1,15 +1,11 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.TestTools;
 
-public class TestCPU : MonoBehaviour
+public class TestCPU : MonoBehaviour, IMonoBehaviourTest
 {
     private int _iter = 0;
-    // Start is called before the first frame update
-    void Start()
-    {
-           
-    }
 
     public static int Factorial(int n)
     {
@@ -25,10 +21,15 @@ public class TestCPU : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (_iter < 5)
+        _iter++;
+        Factorial(1000000);
+    }
+
+    public bool IsTestFinished
+    {
+        get
         {
-            _iter++;
-            Factorial(1000000);
+            return _iter > 10;
         }
     }
 }
