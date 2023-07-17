@@ -22,12 +22,8 @@ jobs:
       - name: build app
         working-directory: ./Web/unity-ci
         run: npm run build
-      - name: upload artifact
-        uses: actions/upload-pages-artifact@v1
+      - name: Deploy to GitHub Pages
+        uses: JamesIves/github-pages-deploy-action@4.1.1
         with:
-          path: ./build
-      - name: deploy to github pages
-        id: deployment
-        uses: actions/deploy-pages@v1
-        with:
-          working-directory: ./Web/unity-ci
+          branch: gh-pages
+          folder: ./Web/my-app/build  # Adjust the path to your build folder
