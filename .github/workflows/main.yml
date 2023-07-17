@@ -31,12 +31,44 @@ jobs:
           UNITY_PASSWORD: ${{ secrets.UNITY_PASSWORD }}
         with:
           targetPlatform: WebGL
-
       # Output
       - uses: actions/upload-artifact@v3
         with:
-          name: Build
-          path: build
+          name: WebGLBuild
+          path: webgl-build
+  build_gh-pages:
+    name: Build gh-pages 📦
+    # The type of runner that the job will run on
+    runs-on: ubuntu-latest
+    needs: [build]
+    # Steps represent a sequence of tasks that will be executed as part of the job
+    steps:
+      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+      - uses: actions/checkout@v2
+      - name: setup node
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18.x
+      - name: install dependencies
+        working-directory: ./Web/unity-ci
+        run: npm ci
+      # Download the .zip artifact
+      - name: build app
+        working-directory: ./Web/unity-ci
+        run: npm run build
+      - name: Download artifact
+        uses: actions/download-artifact@v2
+        with:
+          name: WebGLBuild
+          path: /tmp/webgl-build.zip
+      # Unzip the artifact and move it to the correct directory
+      - name: Unzip artifact
+        run: unzip /tmp/webgl-build.zip -d ./Web/unity-ci/build/
+      - name: Deploy to GitHub Pages
+        uses: JamesIves/github-pages-deploy-action@4.1.1
+        with:
+          branch: gh-pages
+          folder: ./Web/unity-ci/build  # Adjust the path to your build folder
   testAllModes:
     name: Test in ${{ matrix.testMode }}
     runs-on: ubuntu-latest
