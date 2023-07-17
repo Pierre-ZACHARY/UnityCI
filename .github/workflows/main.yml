@@ -35,7 +35,7 @@ jobs:
       - uses: actions/upload-artifact@v3
         with:
           name: WebGLBuild
-          path: webgl-build
+          path: build
   build_gh-pages:
     name: Build gh-pages 📦
     # The type of runner that the job will run on
@@ -53,17 +53,17 @@ jobs:
         working-directory: ./Web/unity-ci
         run: npm ci
       # Download the .zip artifact
+      - name: Download artifact
+        uses: actions/download-artifact@v3
+        with:
+          name: WebGLBuild
+          path: /tmp/build.zip
+      # Unzip the artifact and move it to the correct directory
+      - name: Unzip artifact
+        run: unzip /tmp/build.zip -d ./Web/unity-ci/public/build/
       - name: build app
         working-directory: ./Web/unity-ci
         run: npm run build
-      - name: Download artifact
-        uses: actions/download-artifact@v2
-        with:
-          name: WebGLBuild
-          path: /tmp/webgl-build.zip
-      # Unzip the artifact and move it to the correct directory
-      - name: Unzip artifact
-        run: unzip /tmp/webgl-build.zip -d ./Web/unity-ci/build/
       - name: Deploy to GitHub Pages
         uses: JamesIves/github-pages-deploy-action@4.1.1
         with:
