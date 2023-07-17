@@ -26,4 +26,4 @@ jobs:
         uses: JamesIves/github-pages-deploy-action@4.1.1
         with:
           branch: gh-pages
-          folder: ./Web/my-app/build  # Adjust the path to your build folder
+          folder: ./Web/unity-ci/build  # Adjust the path to your build folder
