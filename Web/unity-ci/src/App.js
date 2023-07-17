@@ -1,7 +1,5 @@
-import logo from './logo.svg';
 import './App.css';
-import { Unity, useUnityContext } from "react-unity-webgl";
-import React, {Fragment} from "react";
+import React from "react";
 
 function App() {
 
