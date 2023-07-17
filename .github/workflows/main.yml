@@ -57,10 +57,7 @@ jobs:
         uses: actions/download-artifact@v3
         with:
           name: WebGLBuild
-          path: /tmp/build.zip
-      # Unzip the artifact and move it to the correct directory
-      - name: Unzip artifact
-        run: unzip /tmp/build.zip -d ./Web/unity-ci/public/build/
+          path: ./Web/unity-ci/public/build/
       - name: build app
         working-directory: ./Web/unity-ci
         run: npm run build
