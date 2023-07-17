@@ -7,7 +7,7 @@ on: [push, pull_request]
 
 jobs:
   build:
-    name: Build my project ✨
+    name: Build WebGL ✨
     runs-on: ubuntu-latest
     steps:
       # Checkout
@@ -58,6 +58,12 @@ jobs:
         with:
           name: WebGLBuild
           path: ./Web/unity-ci/public/build/
+      - name: Unzip all Gz files
+        run: |
+          find ./Web/unity-ci/public/build/WebGL/WebGL/Build -name "*.gz" -exec gzip -d {} \;
+      - name: Remove all Gz files
+        run: |
+          find ./Web/unity-ci/public/build/WebGL/WebGL/Build -name "*.gz" -exec rm {} \;
       - name: build app
         working-directory: ./Web/unity-ci
         run: npm run build
