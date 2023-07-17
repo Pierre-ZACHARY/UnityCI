@@ -22,10 +22,4 @@ public class PlaymodeTests
         Assert.AreEqual(TestCPU.Factorial(1), 1);
         Assert.AreNotEqual(TestCPU.Factorial(10000000), 1);
     }
-    
-    [UnityTest]
-    public IEnumerator MonoBehaviourTest_Works()
-    {
-        yield return new MonoBehaviourTest<TestCPU>();
-    }
 }

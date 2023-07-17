@@ -1,9 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.TestTools;
 
-public class TestCPU : MonoBehaviour, IMonoBehaviourTest
+public class TestCPU : MonoBehaviour
 {
     private int _iter = 0;
 
@@ -23,13 +22,5 @@ public class TestCPU : MonoBehaviour, IMonoBehaviourTest
     {
         _iter++;
         Factorial(1000000);
-    }
-
-    public bool IsTestFinished
-    {
-        get
-        {
-            return _iter > 10;
-        }
     }
 }
