@@ -1,15 +1,14 @@
 using System.Collections;
-using System.Collections.Generic;
 using NUnit.Framework;
-using NUnit.Framework.Internal;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.TestTools;
+using Assert = UnityEngine.Assertions.Assert;
 
 //https://docs.unity3d.com/Packages/com.unity.test-framework@1.1/manual/images/execution-order-unitysetup-teardown.svg
 public class PlaymodeTests
 {
-    [SetUp]
+    [UnitySetUp]
     public void Setup()
     {
         Debug.Log("Setup");

@@ -3,7 +3,6 @@
     "rootNamespace": "",
     "references": [
         "UnityEngine.TestRunner",
-        "UnityEditor.TestRunner",
         "TestCPUAssembly",
         "Unity.TestTools.CodeCoverage.Editor.Compatibility"
     ],
