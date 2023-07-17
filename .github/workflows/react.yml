@@ -1,0 +1,33 @@
+name: Deploy React Application
+
+# Controls when the action will run.
+on: [push, pull_request]
+
+# A workflow run is made up of one or more jobs that can run sequentially or in parallel
+jobs:
+  build_gh-pages:
+    # The type of runner that the job will run on
+    runs-on: ubuntu-latest
+    # Steps represent a sequence of tasks that will be executed as part of the job
+    steps:
+      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+      - uses: actions/checkout@v2
+      - name: setup node
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18.x
+      - name: install dependencies
+        working-directory: ./Web/unity-ci
+        run: npm ci
+      - name: build app
+        working-directory: ./Web/unity-ci
+        run: npm run build
+      - name: upload artifact
+        uses: actions/upload-pages-artifact@v1
+        with:
+          path: ./build
+      - name: deploy to github pages
+        id: deployment
+        uses: actions/deploy-pages@v1
+        with:
+          working-directory: ./Web/unity-ci
