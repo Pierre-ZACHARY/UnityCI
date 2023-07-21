@@ -145,3 +145,27 @@ jobs:
         with:
           name: Coverage results for ${{ matrix.testMode }}
           path: ${{ steps.tests.outputs.coveragePath }}
+          
+  buildDedicatedServer:
+    name: Build dedicated server
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+          lfs: true
+      - uses: actions/cache@v3
+        with:
+          path: Library
+          key: Library-DedicatedServer
+          restore-keys: Library-
+      - uses: game-ci/unity-builder@v2
+        with:
+          targetPlatform: StandaloneLinux64
+          buildName: DedicatedServer
+          buildPath: build/DedicatedServer
+          customParameters: -standaloneBuildSubtarget Server
+      - uses: actions/upload-artifact@v3
+        with:
+          name: Build-DedicatedServer
+          path: build/DedicatedServer
