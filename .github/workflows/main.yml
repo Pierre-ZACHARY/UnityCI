@@ -88,7 +88,6 @@ jobs:
     steps:
       - uses: actions/checkout@v3
         with:
-          fetch-depth: 0
           lfs: true
       - uses: actions/cache@v3
         with:
@@ -152,7 +151,6 @@ jobs:
     steps:
       - uses: actions/checkout@v3
         with:
-          fetch-depth: 0
           lfs: true
       - uses: actions/cache@v3
         with:
@@ -163,7 +161,6 @@ jobs:
         with:
           targetPlatform: StandaloneLinux64
           buildName: DedicatedServer
-          buildPath: build/DedicatedServer
           customParameters: -standaloneBuildSubtarget Server
       - uses: actions/upload-artifact@v3
         with:
