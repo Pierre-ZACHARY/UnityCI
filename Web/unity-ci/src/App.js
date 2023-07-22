@@ -56,7 +56,7 @@ function App(){
                         </label>
                         <input type="submit" value="Submit" />
                     </form>
-                    <a target={"_blank"} href={"https://github.com/settings/personal-access-tokens/"}>Ask for token ( you need 'Read access to actions and metadata' on current repository )</a>
+                    <a target={"_blank"} rel="noreferrer" href={"https://github.com/settings/personal-access-tokens/new"}>Ask for token ( you need 'Read access to actions and metadata' on current repository )</a>
                 </>
             }
         </>
@@ -145,7 +145,7 @@ function App2(token) {
             setUrls({loaderUrl: loaderUrl, dataUrl: dataUrl, wasmUrl: wasmUrl, frameworkUrl: frameworkUrl});
         };
         asyncFetch();
-    }, []);
+    }, [runId, token.token]);
 
 
     return (
