@@ -6,8 +6,13 @@ import { inflate } from "pako";
 import {} from "js-untar";
 
 // this token only allow to read current repo artifacts
-const readArtifactsToken = "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";
-function App() {
+function App(){
+
+    const [token, setToken] = React.useState(localStorage.getItem("token") || "");
+    const [error, setError] = React.useState("");
+    const [loaded, setLoaded] = React.useState(false);
+    const [initialLoad, setInitialLoad] = React.useState(false);
+
     const getQueryParam = (param) => {
         const searchParams = new URLSearchParams(window.location.search);
         return searchParams.get(param);
@@ -18,16 +23,66 @@ function App() {
 
     // Do something with the 'runId' value
     console.log('runId:', runId);
+    const submitForm = async () => {
+        console.log(token);
+        const artifacts = await fetch(`https://api.github.com/repos/Pierre-ZACHARY/UnityCI/actions/runs/${runId}/artifacts`, {
+            headers: {
+                Authorization: `Bearer ${token}`
+            }
+        });
+        if(!artifacts.ok){
+            setError(`Error : ${artifacts.status} ${artifacts.statusText} ( most likely invalid token )`);
+            return;
+        }
+        localStorage.setItem("token", token);
+        setLoaded(true);
+    }
+    // if a token is
+    if(localStorage.getItem("token") && !initialLoad){
+        submitForm().then();
+        setInitialLoad(true);
+    }
+    return (
+        <>
+            {loaded ? <App2 token={token}/> : <>
+                    <p>{error}</p>
+                    <form onSubmit={(e) => {
+                        e.preventDefault()
+                        submitForm().then()
+                    }}>
+                        <label>
+                            Token:
+                            <input type="text" value={token} onChange={(e)=>setToken(e.target.value)}/>
+                        </label>
+                        <input type="submit" value="Submit" />
+                    </form>
+                    <a target={"_blank"} href={"https://github.com/settings/personal-access-tokens/"}>Ask for token ( you need 'Read access to actions and metadata' on current repository )</a>
+                </>
+            }
+        </>
+    )
+}
+function App2(token) {
+    const getQueryParam = (param) => {
+        const searchParams = new URLSearchParams(window.location.search);
+        return searchParams.get(param);
+    };
 
+    // Retrieve the 'runId' query parameter
+    const runId = getQueryParam('runId');
+
+    // Do something with the 'runId' value
+    console.log('runId:', runId);
     const [urls, setUrls] = React.useState({loaderUrl: "", dataUrl: "", wasmUrl: "", frameworkUrl: ""});
     const [error, setError] = React.useState("");
     useEffect(()=>{
         const asyncFetch = async () => {
             console.log("Fetching The build...");
+            console.log(token.token)
             setError("Fetching The build...");
             const artifacts = await fetch(`https://api.github.com/repos/Pierre-ZACHARY/UnityCI/actions/runs/${runId}/artifacts`, {
                 headers: {
-                    Authorization: `Bearer ${readArtifactsToken}`
+                    Authorization: `Bearer ${token.token}`
                 }
             });
             if(!artifacts.ok){
@@ -49,7 +104,7 @@ function App() {
             }
             const response = await fetch(`https://api.github.com/repos/Pierre-ZACHARY/UnityCI/actions/artifacts/${artifactId}/zip`, {
                 headers: {
-                    Authorization: `Bearer ${readArtifactsToken}`
+                    Authorization: `Bearer ${token.token}`
                 }
             });
             if(!response.ok){
@@ -90,7 +145,7 @@ function App() {
             setUrls({loaderUrl: loaderUrl, dataUrl: dataUrl, wasmUrl: wasmUrl, frameworkUrl: frameworkUrl});
         };
         asyncFetch();
-    }, [runId]);
+    }, []);
 
 
     return (
