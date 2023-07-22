@@ -159,8 +159,13 @@ function App2(token) {
 
 function DisplayUnity({loaderUrl, dataUrl, frameworkUrl, wasmUrl}){
     console.log("Loading Unity...");
+    let loaderUrlLocal = "/WebGL.loader.js";
+
+    if(window.location.pathname.length > 1){
+        loaderUrl = window.location.pathname+"/WebGL.loader.js";
+    }
     const { unityProvider, loadingProgression, isLoaded } = useUnityContext({
-        loaderUrl: window.location.pathname+"/WebGL.loader.js",
+        loaderUrl: loaderUrlLocal,
         dataUrl: dataUrl,
         frameworkUrl: frameworkUrl,
         codeUrl: wasmUrl,
