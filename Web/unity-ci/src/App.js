@@ -78,7 +78,7 @@ function App() {
             setUrls({loaderUrl: loaderUrl, dataUrl: dataUrl, wasmUrl: wasmUrl, frameworkUrl: frameworkUrl});
         };
         asyncFetch();
-    }, []);
+    }, [runId]);
 
 
     return (
