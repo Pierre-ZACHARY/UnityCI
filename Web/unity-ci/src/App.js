@@ -162,7 +162,7 @@ function DisplayUnity({loaderUrl, dataUrl, frameworkUrl, wasmUrl}){
     let loaderUrlLocal = "/WebGL.loader.js";
 
     if(window.location.pathname.length > 1){
-        loaderUrl = window.location.pathname+"/WebGL.loader.js";
+        loaderUrlLocal = window.location.pathname+"/WebGL.loader.js";
     }
     const { unityProvider, loadingProgression, isLoaded } = useUnityContext({
         loaderUrl: loaderUrlLocal,
