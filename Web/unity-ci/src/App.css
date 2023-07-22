@@ -4,13 +4,13 @@ body, * {
   padding: 0;
 }
 
-.unity-container{
+#root{
   width: 100vw;
   height: 100vh;
   overflow: hidden;
 }
 
-.unity-container>canvas{
+#root>canvas{
   width: 100%;
   height: 100%;
   overflow: auto;

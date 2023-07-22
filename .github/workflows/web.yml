@@ -1,0 +1,46 @@
+name: Build web
+
+on:
+  push:
+    paths:
+      - 'Web/**'
+      - '.github/workflows/web.yml'
+    branches:
+      - main
+
+jobs:
+  build_gh-pages:
+    name: Build gh-pages 📦
+    # The type of runner that the job will run on
+    runs-on: ubuntu-latest
+    # Steps represent a sequence of tasks that will be executed as part of the job
+    steps:
+      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+      - uses: actions/checkout@v2
+      - name: setup node
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18.x
+      - name: install dependencies
+        working-directory: ./Web/unity-ci
+        run: npm ci
+      # Download the .zip artifact
+      - name: Download artifact
+        uses: actions/download-artifact@v3
+        with:
+          name: WebGLBuild
+          path: ./Web/unity-ci/public/build/
+      - name: Unzip all Gz files
+        run: |
+          find ./Web/unity-ci/public/build/WebGL/WebGL/Build -name "*.gz" -exec gzip -d {} \;
+      - name: Remove all Gz files
+        run: |
+          find ./Web/unity-ci/public/build/WebGL/WebGL/Build -name "*.gz" -exec rm {} \;
+      - name: build app
+        working-directory: ./Web/unity-ci
+        run: npm run build
+      - name: Deploy to GitHub Pages
+        uses: JamesIves/github-pages-deploy-action@4.1.1
+        with:
+          branch: gh-pages
+          folder: ./Web/unity-ci/build  # Adjust the path to your build folder
