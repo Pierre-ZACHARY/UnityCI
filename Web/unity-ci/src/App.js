@@ -6,9 +6,18 @@ import { inflate } from "pako";
 import {} from "js-untar";
 
 // this token only allow to read current repo artifacts
-const readArtifactsToken = "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";
+const readArtifactsToken = "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";
 function App() {
-    const runId = window.location.pathname.split("/")[1];
+    const getQueryParam = (param) => {
+        const searchParams = new URLSearchParams(window.location.search);
+        return searchParams.get(param);
+    };
+
+    // Retrieve the 'runId' query parameter
+    const runId = getQueryParam('runId');
+
+    // Do something with the 'runId' value
+    console.log('runId:', runId);
 
     const [urls, setUrls] = React.useState({loaderUrl: "", dataUrl: "", wasmUrl: "", frameworkUrl: ""});
     const [error, setError] = React.useState("");

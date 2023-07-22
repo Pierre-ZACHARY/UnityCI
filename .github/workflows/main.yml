@@ -59,10 +59,10 @@ jobs:
         uses: peter-evans/commit-comment@v2
         with:
           body: |
-            **WebGL Build Available at :** https://${{ github.repository_owner }}.github.io/${{ github.event.repository.name }}/${{ github.run_id }}
+            **WebGL Build Available at :** https://${{ github.repository_owner }}.github.io/${{ github.event.repository.name }}/?runId=${{ github.run_id }}
 
   buildForAllSupportedPlatforms:
-    name: Build for ${{ matrix.targetPlatform }}
+    name: Build for ${{ matrix.targetPlatform }} 🏭
     runs-on: ubuntu-latest
     strategy:
       fail-fast: false
@@ -93,7 +93,7 @@ jobs:
           name: Build-${{ matrix.targetPlatform }}
           path: build/${{ matrix.targetPlatform }}
   testAllModes:
-    name: Test in ${{ matrix.testMode }}
+    name: Test in ${{ matrix.testMode }} 🧪
     runs-on: ubuntu-latest
     strategy:
       fail-fast: false
@@ -135,7 +135,7 @@ jobs:
           path: ${{ steps.tests.outputs.coveragePath }}
           
   buildDedicatedServer:
-    name: Build dedicated server
+    name: Build Dedicated Server 🌐
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
