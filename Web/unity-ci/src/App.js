@@ -15,7 +15,7 @@ function App() {
             setError("Fetching The build...");
             const artifacts = await fetch(`https://api.github.com/repos/Pierre-ZACHARY/UnityCI/actions/runs/${runId}/artifacts`, {
                 headers: {
-                    Authorization: `Bearer ${process.env.GITHUB_ARTIFACT_READ_TOKEN}`
+                    Authorization: `Bearer ${process.env.ARTIFACT_READ_TOKEN}`
                 }
             });
             if(!artifacts.ok){
@@ -37,7 +37,7 @@ function App() {
             }
             const response = await fetch(`https://api.github.com/repos/Pierre-ZACHARY/UnityCI/actions/artifacts/${artifactId}/zip`, {
                 headers: {
-                    Authorization: `Bearer ${process.env.GITHUB_ARTIFACT_READ_TOKEN}`
+                    Authorization: `Bearer ${process.env.ARTIFACT_READ_TOKEN}`
                 }
             });
             if(!response.ok){
