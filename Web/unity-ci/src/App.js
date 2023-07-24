@@ -127,7 +127,7 @@ function App2(token) {
             const wasmGzArray = await wasmGz.async("arraybuffer");
             const frameworkJsGzArray = await frameworkJsGz.async("arraybuffer");
             const loaderJsArray = await loaderJs.async("arraybuffer");
-            const tarDataGzArray = inflate(new Uint8Array(dataGzArray), { to: 'array'});
+            const tarDataGzArray = inflate(new Uint8Array(dataGzArray), { to: 'array' });
             const tarWasmGzArray = inflate(new Uint8Array(wasmGzArray), { to: 'array'});
             const tarFrameworkJsGzArray = inflate(new Uint8Array(frameworkJsGzArray), { to: 'array'});
             const loaderBlob = new Blob([loaderJsArray], {type: "application/javascript"});

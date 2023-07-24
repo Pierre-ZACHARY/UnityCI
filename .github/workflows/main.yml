@@ -92,6 +92,39 @@ jobs:
         with:
           name: Build-${{ matrix.targetPlatform }}
           path: build/${{ matrix.targetPlatform }}
+  buildIosSimulator:
+    name: Build iOS Simulator 🏭
+    runs-on: macos-latest
+    needs: [buildForAllSupportedPlatforms]
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+      - name: Download artifact
+        uses: actions/download-artifact@v2
+        with:
+          name: Build-iOS
+      - name: Set up Xcode
+        uses: actions/setup-xcode@v2
+        with:
+          xcode-version: '12.x' # You can change the Xcode version if needed
+      - name: Build Unity project
+        run: |
+          ls -la
+          cd iOS
+          ls -la
+          xcodebuild -workspace Unity-iPhone.xcworkspace -scheme Unity-iPhone -sdk iphonesimulator -configuration Debug clean build CODE_SIGNING_ALLOWED=NO
+          ls -la
+          ls -la build
+          ls -la build/Debug-iphonesimulator
+      - name: Copy .app file to the artifact
+        run: |
+          mkdir -p $HOME/artifacts
+          cp -R iOS/Unity-iPhone/build/Debug-iphonesimulator/YourAppName.app $HOME/artifacts/
+      - name: Upload artifact
+        uses: actions/upload-artifact@v2
+        with:
+          name: iOS-App
+          path: $HOME/artifacts
   testAllModes:
     name: Test in ${{ matrix.testMode }} 🧪
     runs-on: ubuntu-latest
