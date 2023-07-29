@@ -108,7 +108,7 @@ jobs:
           ls -la
           cd iOS
           ls -la
-          xcodebuild -project Unity-iPhone.xcodeproj -scheme Unity-iPhone -configuration Debug clean build CODE_SIGNING_ALLOWED=NO
+          xcodebuild -project Unity-iPhone.xcodeproj -scheme Unity-iPhone -sdk iphonesimulator -configuration Debug clean build CODE_SIGNING_ALLOWED=NO
           ls -la
           cd ~/Library/Developer/Xcode/DerivedData
           ls -la
