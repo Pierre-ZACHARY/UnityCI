@@ -108,7 +108,7 @@ jobs:
           ls -la
           cd iOS
           ls -la
-          xcodebuild -workspace Unity-iPhone.xcworkspace -scheme Unity-iPhone -sdk iphonesimulator -configuration Debug clean build CODE_SIGNING_ALLOWED=NO
+          xcodebuild -project Unity-iPhone.xcodeproj -scheme Unity-iPhone -destination 'platform=iOS Simulator,name=iPhone 14' -configuration Debug clean build CODE_SIGNING_ALLOWED=NO
           ls -la
           ls -la build
           ls -la build/Debug-iphonesimulator
