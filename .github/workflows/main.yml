@@ -9,7 +9,6 @@ on:
       - 'Assets/**'
       - 'Packages/**'
       - 'ProjectSettings/**'
-      - '.github/workflows/main.yml'
     branches:
       - master
       - release
@@ -18,7 +17,6 @@ on:
       - 'Assets/**'
       - 'Packages/**'
       - 'ProjectSettings/**'
-      - '.github/workflows/main.yml'
     branches:
       - master
       - release
@@ -105,6 +103,8 @@ jobs:
           name: Build-iOS
       - name: Build Unity project
         run: |
+          ls -la
+          cd iOS
           ls -la
           xcodebuild -workspace Unity-iPhone.xcworkspace -scheme Unity-iPhone -sdk iphonesimulator -configuration Debug clean build CODE_SIGNING_ALLOWED=NO
           ls -la
