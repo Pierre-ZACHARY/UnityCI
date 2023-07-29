@@ -110,17 +110,17 @@ jobs:
           ls -la
           xcodebuild -project Unity-iPhone.xcodeproj -scheme Unity-iPhone -configuration Debug clean build CODE_SIGNING_ALLOWED=NO
           ls -la
-          ls -la build
-          ls -la build/Debug-iphonesimulator
-      - name: Copy .app file to the artifact
-        run: |
-          mkdir -p $HOME/artifacts
-          cp -R iOS/Unity-iPhone/build/Debug-iphonesimulator/YourAppName.app $HOME/artifacts/
+          cd ~/Library/Developer/Xcode/DerivedData
+          ls -la
+          cd Build/Products
+          ls -la
+          cd Debug-iphoneos/
+          ls -la 
       - name: Upload artifact
         uses: actions/upload-artifact@v2
         with:
           name: iOS-App
-          path: $HOME/artifacts
+          path: ~/Library/Developer/Xcode/DerivedData/Build/Products/Debug-iphoneos/UnityCI.app
   testAllModes:
     name: Test in ${{ matrix.testMode }} 🧪
     runs-on: ubuntu-latest
