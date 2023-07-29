@@ -106,8 +106,6 @@ jobs:
       - name: Build Unity project
         run: |
           ls -la
-          cd iOS
-          ls -la
           xcodebuild -workspace Unity-iPhone.xcworkspace -scheme Unity-iPhone -sdk iphonesimulator -configuration Debug clean build CODE_SIGNING_ALLOWED=NO
           ls -la
           ls -la build
