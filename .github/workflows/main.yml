@@ -103,10 +103,6 @@ jobs:
         uses: actions/download-artifact@v2
         with:
           name: Build-iOS
-      - name: Set up Xcode
-        uses: actions/setup-xcode@v2
-        with:
-          xcode-version: '12.x' # You can change the Xcode version if needed
       - name: Build Unity project
         run: |
           ls -la
