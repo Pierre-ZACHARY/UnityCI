@@ -118,7 +118,7 @@ jobs:
           ls -la
           cd Debug-iphoneos/
           ls -la 
-          cp ./UnityCI.app ~/UnityCI.app
+          cp -r ./UnityCI.app ~/UnityCI.app
       - name: Upload artifact
         uses: actions/upload-artifact@v2
         with:
