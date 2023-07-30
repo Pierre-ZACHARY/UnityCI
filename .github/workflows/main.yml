@@ -112,6 +112,8 @@ jobs:
           ls -la
           cd ~/Library/Developer/Xcode/DerivedData
           ls -la
+          cd "$(find . -type d -name 'Unity-iPhone-*' -print -quit)"
+          ls -la
           cd Build/Products
           ls -la
           cd Debug-iphoneos/
