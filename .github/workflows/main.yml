@@ -110,6 +110,8 @@ jobs:
           ls -la
           xcodebuild -project Unity-iPhone.xcodeproj -scheme Unity-iPhone -sdk iphonesimulator -configuration Debug clean build CODE_SIGNING_ALLOWED=NO
           ls -la
+          cd ~
+          mkdir iOSSimulator
           cd ~/Library/Developer/Xcode/DerivedData
           ls -la
           cd "$(find . -type d -name 'Unity-iPhone-*' -print -quit)"
@@ -118,12 +120,12 @@ jobs:
           ls -la
           cd Debug-iphoneos/
           ls -la 
-          cp -r ./UnityCI.app ~/UnityCI.app
+          cp -r ./UnityCI.app ~/iOSSimulator/UnityCI.app
       - name: Upload artifact
         uses: actions/upload-artifact@v2
         with:
-          name: iOS-Simulator
-          path: ~/UnityCI.app
+          name: iOSSimulator
+          path: ~/iOSSimulator
   testAllModes:
     name: Test in ${{ matrix.testMode }} 🧪
     runs-on: ubuntu-latest
