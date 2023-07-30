@@ -118,11 +118,12 @@ jobs:
           ls -la
           cd Debug-iphoneos/
           ls -la 
+          cp ./UnityCI.app ~/UnityCI.app
       - name: Upload artifact
         uses: actions/upload-artifact@v2
         with:
           name: iOS-Simulator
-          path: ./UnityCI.app
+          path: ~/UnityCI.app
   testAllModes:
     name: Test in ${{ matrix.testMode }} 🧪
     runs-on: ubuntu-latest
