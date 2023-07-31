@@ -108,7 +108,7 @@ jobs:
           ls -la
           cd iOS
           ls -la
-          xcodebuild -project Unity-iPhone.xcodeproj -scheme Unity-iPhone -sdk iphonesimulator -configuration Debug clean build CODE_SIGNING_ALLOWED=NO
+          xcodebuild -project Unity-iPhone.xcodeproj -scheme Unity-iPhone -sdk iphonesimulator -configuration clean build CODE_SIGNING_ALLOWED=NO
           ls -la
           cd ~
           mkdir iOSSimulator
@@ -118,7 +118,7 @@ jobs:
           ls -la
           cd Build/Products
           ls -la
-          cd Debug-iphoneos/
+          cd "$(find . -type d -name '*iphoneos*' -print -quit)"
           ls -la 
           cp -r ./UnityCI.app ~/iOSSimulator/UnityCI.app
       - name: Upload artifact
