@@ -95,7 +95,6 @@ jobs:
   buildIosSimulatorApp:
     name: Build iOS Simulator 🏭
     runs-on: macos-latest
-    needs: [buildForAllSupportedPlatforms]
     steps:
       - name: Checkout repository
         uses: actions/checkout@v2
