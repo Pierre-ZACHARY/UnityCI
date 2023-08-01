@@ -92,12 +92,13 @@ jobs:
         with:
           name: Build-${{ matrix.targetPlatform }}
           path: build/${{ matrix.targetPlatform }}
-  buildIosSimulatorApp:
+  buildIosSimulator:
     name: Build iOS Simulator 🏭
-    runs-on: macos-latest
+    runs-on: ubuntu-latest
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v2
+      - uses: actions/checkout@v3
+        with:
+          lfs: true
       - uses: actions/cache@v3
         with:
           path: Library
@@ -106,7 +107,23 @@ jobs:
       - uses: game-ci/unity-builder@v2
         with:
           targetPlatform: iOS
-          customParameters: -set:iosSdkVersion=simulator
+          customParameter: -set:iosSdkVersion=simulator
+      - uses: actions/upload-artifact@v3
+        with:
+          name: Build-iOSSimulator
+          path: build/iOS  
+  buildIosSimulatorApp:
+    name: Build iOS Simulator App 🏭
+    runs-on: macos-latest
+    needs: [buildIosSimulator]
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+      - name: Download artifact
+        uses: actions/download-artifact@v2
+        with:
+          name: Build-iOSSimulator
+          path: build/iOS
       - name: Build Unity project
         run: |
           ls -la
@@ -128,7 +145,7 @@ jobs:
       - name: Upload artifact
         uses: actions/upload-artifact@v2
         with:
-          name: iOSSimulator
+          name: iOSSimulatorApp
           path: ~/iOSSimulator
   testAllModes:
     name: Test in ${{ matrix.testMode }} 🧪
