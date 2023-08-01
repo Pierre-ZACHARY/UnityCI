@@ -108,7 +108,7 @@ jobs:
           ls -la
           cd iOS
           ls -la
-          xcodebuild -project Unity-iPhone.xcodeproj -sdk iphonesimulator CODE_SIGNING_ALLOWED=NO
+          xcodebuild -project Unity-iPhone.xcodeproj -sdk iphonesimulator -configuration clean build CODE_SIGNING_ALLOWED=NO
           ls -la
           cd ~
           mkdir iOSSimulator
