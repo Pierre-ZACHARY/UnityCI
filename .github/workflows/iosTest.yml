@@ -12,9 +12,6 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v2
-      - name: Unity - Activate
-        uses: game-ci/unity-activate@v2.0.0
       - name: Run a command in Docker container
         run: |
-          echo Testing unityci/editor:ubuntu-2023.1.3f1-ios-1.1.2
-          unity-editor -batchmode -logFile -
+          unity-editor -version
