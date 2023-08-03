@@ -9,9 +9,14 @@ jobs:
     runs-on: ubuntu-latest
     container: 
       image: unityci/editor:ubuntu-2023.1.3f1-ios-1.1.2
+      env:
+        UNITY_LICENSE: ${{ secrets.UNITY_LICENSE }}
     steps:
       - name: Checkout
         uses: actions/checkout@v2
       - name: Run a command in Docker container
         run: |
           unity-editor -version
+          ls -al
+          echo $UNITY_LICENSE
+          echo $UNITY_LICENSE > license.ulf
