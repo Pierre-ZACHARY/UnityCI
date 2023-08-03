@@ -24,9 +24,9 @@ jobs:
           echo $UNITY_LICENSE
           echo $UNITY_LICENSE > license2.ulf
           ls -al
-          echo === LICENSE 1 ( working ) ===
+          echo === LICENSE 1 working ===
           cat license.ulf
-          echo === LICENSE 2 ( from env ) ===
+          echo === LICENSE 2 from env ===
           cat license2.ulf
           unity-editor -batchmode -quit -manualLicenseFile license2.ulf -logFile /dev/stdout
           unity-editor -batchmode -quit -createProject '$(pwd)' -logFile /dev/stdout
