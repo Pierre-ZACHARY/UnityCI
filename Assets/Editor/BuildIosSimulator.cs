@@ -7,6 +7,7 @@ namespace Editor
     {
         static void BuildiOS()
         {
+            Debug.Log("hello world!");
             // Get all scenes added to the build settings
             //EditorBuildSettingsScene[] scenes = EditorBuildSettings.scenes;
 
