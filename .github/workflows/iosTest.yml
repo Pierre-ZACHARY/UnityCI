@@ -20,3 +20,6 @@ jobs:
           ls -al
           echo $UNITY_LICENSE
           echo $UNITY_LICENSE > license.ulf
+          ls -al
+          unity-editor -batchmode -manualLicenseFile license.ulf -logFile -
+          unity-editor -batchmode -createProject '$(pwd)' -logFile -
