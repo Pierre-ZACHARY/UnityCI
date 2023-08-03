@@ -27,7 +27,7 @@ jobs:
           echo $UNITY_LICENSE_BASE64
           echo === DECODED ====
           echo $UNITY_LICENSE_BASE64 | base64 --decode
-          echo $UNITY_LICENSE > license2.ulf
+          echo $UNITY_LICENSE_BASE64 | base64 --decode > license2.ulf
           ls -al
           echo === LICENSE 1 working ===
           cat license.ulf
