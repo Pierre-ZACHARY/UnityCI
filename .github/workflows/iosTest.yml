@@ -19,15 +19,8 @@ jobs:
       - name: Run a command in Docker container
         run: |
           unity-editor -version
+          echo $UNITY_LICENSE > license.ulf
           ls -al
-          echo === GITHUB ENV ===
-          echo $UNITY_LICENSE
-          echo $UNITY_LICENSE > license2.ulf
-          ls -al
-          echo === LICENSE 1 working ===
-          cat license.ulf
-          echo === LICENSE 2 from env ===
-          cat license2.ulf
-          unity-editor -batchmode -quit -manualLicenseFile license2.ulf -logFile /dev/stdout
+          unity-editor -batchmode -quit -manualLicenseFile license.ulf -logFile /dev/stdout
           unity-editor -batchmode -quit -createProject '$(pwd)' -logFile /dev/stdout
           ls -la
