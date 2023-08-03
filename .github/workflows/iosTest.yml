@@ -2,7 +2,9 @@ name: Unity CI IOS Test
 
 on: 
   workflow_dispatch:
-
+  push:
+      paths:
+        - '.github/workflows/iosTest.yml'
 jobs:
   testManualBuild:
     name: ManualBuildIOS
@@ -19,8 +21,9 @@ jobs:
           unity-editor -version
           ls -al
           echo $UNITY_LICENSE
-          echo $UNITY_LICENSE > license.ulf
+          echo $UNITY_LICENSE > license2.ulf
           ls -al
           cat license.ulf
+          cat license2.ulf
           unity-editor -batchmode -manualLicenseFile license.ulf -logFile -
           unity-editor -batchmode -createProject '$(pwd)' -logFile -
