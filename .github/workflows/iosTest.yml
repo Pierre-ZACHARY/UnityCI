@@ -23,5 +23,10 @@ jobs:
           ls -al
           unity-editor -batchmode -quit -manualLicenseFile license.ulf -logFile /dev/stdout
           unity-editor -batchmode -quit -createProject "$(pwd)" -logFile /dev/stdout
-          unity-editor -batchmode -nographics -quit -executeMethod Editor.BuildIosSimulator.BuildiOS -logFile /dev/stdout
+          unity-editor -batchmode -quit -executeMethod Editor.BuildIosSimulator.BuildiOS -logFile /dev/stdout
           ls -la
+      - name: Upload Builds/iOS
+        uses: actions/upload-artifact@v2
+        with:
+          name: iOS
+          path: Builds/iOS
