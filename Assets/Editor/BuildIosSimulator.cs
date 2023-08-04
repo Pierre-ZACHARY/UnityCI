@@ -1,26 +1,16 @@
 ﻿using UnityEditor;
 using UnityEngine;
+using UnityEditor.Build.Reporting;
 
 namespace Editor
 {
     public class BuildIosSimulator
     {
+        [MenuItem("Build/Build iOS Simulator")]
         static void BuildiOS()
         {
-            // Get all scenes added to the build settings
-            EditorBuildSettingsScene[] scenes = EditorBuildSettings.scenes;
-
-            // Create an array to store scene paths
-            string[] scenePaths = new string[scenes.Length];
-
-            // Extract the scene paths from EditorBuildSettingsScene array
-            for (int i = 0; i < scenes.Length; i++)
-            {
-                scenePaths[i] = scenes[i].path;
-            }
-
             Debug.Log("Building iOS Simulator");
-            Debug.Log(scenePaths);
+            //Debug.Log(scenePaths);
             // Set the output folder for the iOS build
             string outputFolder = "Builds/iOS";
             BuildTarget buildTarget = BuildTarget.iOS;
@@ -28,7 +18,18 @@ namespace Editor
             // set sdk to iphone simulator
             PlayerSettings.iOS.sdkVersion = iOSSdkVersion.SimulatorSDK;
             // Perform iOS build
-            BuildPipeline.BuildPlayer(scenes, outputFolder, buildTarget, BuildOptions.None);
+            BuildReport report = BuildPipeline.BuildPlayer(EditorBuildSettings.scenes, outputFolder, buildTarget, BuildOptions.None);
+            BuildSummary summary = report.summary;
+            if (summary.result == BuildResult.Succeeded)
+            {
+                Debug.Log("Build succeeded: " + summary.totalSize + " bytes");
+            }
+
+            if (summary.result == BuildResult.Failed)
+            {
+                Debug.Log("Build failed");
+            }
         }
     }
+
 }
