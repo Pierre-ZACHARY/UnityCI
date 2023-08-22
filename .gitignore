@@ -78,3 +78,6 @@ crashlytics-build.properties
 /[Aa]rtifacts/
 /[Cc]odeCoverage/
 standalone.log
+
+iOSSimBuild/
+ProfileAnalyzer/

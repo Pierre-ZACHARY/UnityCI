@@ -4,9 +4,21 @@ import { Unity, useUnityContext } from "react-unity-webgl";
 import JSZip from "jszip";
 import { inflate } from "pako";
 import {} from "js-untar";
-
+import "./main.sass";
+import {ReportView} from "./report_view/ReportView";
 // this token only allow to read current repo artifacts
+
 function App(){
+    return (
+        <div className="main flex screenheight">
+            <ReportView/>
+            <a href={"/generated/master/256d9a6853b06fded36dae385b350f5610be9f45_2023_08_21_01_05_46/report.html"}>report</a>
+        </div>
+    );
+}
+
+
+function AppOld(){
 
     const [token, setToken] = React.useState(localStorage.getItem("token") || "");
     const [error, setError] = React.useState("");

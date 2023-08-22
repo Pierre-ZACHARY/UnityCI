@@ -1,7 +1,0 @@
-{
-  "dependencies": {
-    "dotenv": "^16.3.1",
-    "oauthio-web": "^0.6.2",
-    "react-github-login": "^1.0.3"
-  }
-}

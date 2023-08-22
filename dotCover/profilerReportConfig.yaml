@@ -1,0 +1,6 @@
+assembliesFilter: -:Unity*;-:com.unity*;-:Cinemachine;-:CustomEditor;-:YamlDotNet*
+reportAbsolutePath: C:\Users\Yukiix\UnityCI\dotCover\master\20230821_23_03_37
+samples:
+- CustomUpdateRun
+- Factorial
+

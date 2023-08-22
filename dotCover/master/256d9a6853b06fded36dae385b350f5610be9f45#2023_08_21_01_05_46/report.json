@@ -1,0 +1,206 @@
+{
+  "DotCoverVersion": "2023.2",
+  "Kind": "Root",
+  "CoveredStatements": 70,
+  "TotalStatements": 70,
+  "CoveragePercent": 100,
+  "Children": [
+    {
+      "Kind": "Assembly",
+      "Name": "PlaymodeTests",
+      "CoveredStatements": 19,
+      "TotalStatements": 19,
+      "CoveragePercent": 100,
+      "Children": [
+        {
+          "Kind": "Type",
+          "Name": "PlaymodeTests",
+          "CoveredStatements": 16,
+          "TotalStatements": 16,
+          "CoveragePercent": 100,
+          "Children": [
+            {
+              "Kind": "Method",
+              "Name": "PlaymodeTestsSimplePasses():void",
+              "CoveredStatements": 5,
+              "TotalStatements": 5,
+              "CoveragePercent": 100
+            },
+            {
+              "Kind": "Method",
+              "Name": "Setup():void",
+              "CoveredStatements": 4,
+              "TotalStatements": 4,
+              "CoveragePercent": 100
+            },
+            {
+              "Kind": "Method",
+              "Name": "TestWithFrameExecution():IEnumerator",
+              "CoveredStatements": 7,
+              "TotalStatements": 7,
+              "CoveragePercent": 100,
+              "Children": [
+                {
+                  "Kind": "InternalCompiledMethod",
+                  "Name": "MoveNext():bool",
+                  "CoveredStatements": 7,
+                  "TotalStatements": 7,
+                  "CoveragePercent": 100
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "Kind": "Type",
+          "Name": "UnitySourceGeneratedAssemblyMonoScriptTypes_v1",
+          "CoveredStatements": 3,
+          "TotalStatements": 3,
+          "CoveragePercent": 100,
+          "Children": [
+            {
+              "Kind": "Type",
+              "Name": "MonoScriptData",
+              "CoveredStatements": 0,
+              "TotalStatements": 0,
+              "CoveragePercent": 0
+            },
+            {
+              "Kind": "Method",
+              "Name": "Get():MonoScriptData",
+              "CoveredStatements": 3,
+              "TotalStatements": 3,
+              "CoveragePercent": 100
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "Kind": "Assembly",
+      "Name": "TestCPUAssembly",
+      "CoveredStatements": 38,
+      "TotalStatements": 38,
+      "CoveragePercent": 100,
+      "Children": [
+        {
+          "Kind": "Type",
+          "Name": "TestCPU",
+          "CoveredStatements": 35,
+          "TotalStatements": 35,
+          "CoveragePercent": 100,
+          "Children": [
+            {
+              "Kind": "Constructor",
+              "Name": "TestCPU()",
+              "CoveredStatements": 2,
+              "TotalStatements": 2,
+              "CoveragePercent": 100
+            },
+            {
+              "Kind": "Method",
+              "Name": "Factorial(int):int",
+              "CoveredStatements": 13,
+              "TotalStatements": 13,
+              "CoveragePercent": 100
+            },
+            {
+              "Kind": "Method",
+              "Name": "Update():void",
+              "CoveredStatements": 20,
+              "TotalStatements": 20,
+              "CoveragePercent": 100
+            }
+          ]
+        },
+        {
+          "Kind": "Type",
+          "Name": "UnitySourceGeneratedAssemblyMonoScriptTypes_v1",
+          "CoveredStatements": 3,
+          "TotalStatements": 3,
+          "CoveragePercent": 100,
+          "Children": [
+            {
+              "Kind": "Type",
+              "Name": "MonoScriptData",
+              "CoveredStatements": 0,
+              "TotalStatements": 0,
+              "CoveragePercent": 0
+            },
+            {
+              "Kind": "Method",
+              "Name": "Get():MonoScriptData",
+              "CoveredStatements": 3,
+              "TotalStatements": 3,
+              "CoveragePercent": 100
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "Kind": "Assembly",
+      "Name": "Tests",
+      "CoveredStatements": 13,
+      "TotalStatements": 13,
+      "CoveragePercent": 100,
+      "Children": [
+        {
+          "Kind": "Type",
+          "Name": "TestSample",
+          "CoveredStatements": 10,
+          "TotalStatements": 10,
+          "CoveragePercent": 100,
+          "Children": [
+            {
+              "Kind": "Method",
+              "Name": "TestSampleSimplePasses():void",
+              "CoveredStatements": 6,
+              "TotalStatements": 6,
+              "CoveragePercent": 100
+            },
+            {
+              "Kind": "Method",
+              "Name": "TestSampleWithEnumeratorPasses():IEnumerator",
+              "CoveredStatements": 4,
+              "TotalStatements": 4,
+              "CoveragePercent": 100,
+              "Children": [
+                {
+                  "Kind": "InternalCompiledMethod",
+                  "Name": "MoveNext():bool",
+                  "CoveredStatements": 4,
+                  "TotalStatements": 4,
+                  "CoveragePercent": 100
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "Kind": "Type",
+          "Name": "UnitySourceGeneratedAssemblyMonoScriptTypes_v1",
+          "CoveredStatements": 3,
+          "TotalStatements": 3,
+          "CoveragePercent": 100,
+          "Children": [
+            {
+              "Kind": "Type",
+              "Name": "MonoScriptData",
+              "CoveredStatements": 0,
+              "TotalStatements": 0,
+              "CoveragePercent": 0
+            },
+            {
+              "Kind": "Method",
+              "Name": "Get():MonoScriptData",
+              "CoveredStatements": 3,
+              "TotalStatements": 3,
+              "CoveragePercent": 100
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

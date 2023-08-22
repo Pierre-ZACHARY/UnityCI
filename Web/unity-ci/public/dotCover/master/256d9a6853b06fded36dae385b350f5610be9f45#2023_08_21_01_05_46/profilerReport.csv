@@ -1,0 +1,3 @@
+Name,TotalTimeMs,MeanTimeMs,MinTimeMs,MaxTimeMs,Frames,SamplesCount
+Factorial,1706,26,0,241,62,64
+CustomUpdateRun,1834,30,29,31,61,61
