@@ -9,5 +9,4 @@ jobs:
       # Request manual activation file
       - name: Run a command in Docker container
         run: |
-          echo "Hello world"
           ls
