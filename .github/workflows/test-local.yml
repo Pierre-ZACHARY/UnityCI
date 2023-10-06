@@ -1,0 +1,13 @@
+﻿name: Test Self Hosted
+on:
+  workflow_dispatch: {}
+jobs:
+  activation:
+    name: Test-SelfHosted Runner
+    runs-on: self-hosted
+    steps:
+      # Request manual activation file
+      - name: Run a command in Docker container
+        run: |
+          echo "Hello world"
+          ls
