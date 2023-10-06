@@ -9,4 +9,4 @@ jobs:
       # Request manual activation file
       - name: Run a command in Docker container
         run: |
-          ls
+           Get-Command unity.exe | Select-Object -ExpandProperty Source
