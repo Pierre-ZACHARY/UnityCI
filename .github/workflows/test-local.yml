@@ -1,12 +1,25 @@
-﻿name: Test Self Hosted
+name: Self-hosted Runner Workflow
+
 on:
   workflow_dispatch: {}
+  push:
+    branches:
+      - main # Replace with the branch name you want to trigger on
+  pull_request:
+    types:
+      - opened
+      - synchronize
+      - closed
+      
 jobs:
-  activation:
-    name: Test-SelfHosted Runner
+  tests:
     runs-on: self-hosted
     steps:
-      # Request manual activation file
+      - name: Check out code
+        uses: actions/checkout@v2
       - name: Run a command in Docker container
         run: |
            Get-Command unity.exe | Select-Object -ExpandProperty Source
+      - name: list
+        run: | 
+          dir
