@@ -18,8 +18,15 @@ jobs:
       - name: Check out code
         uses: actions/checkout@v2
       - name: Run a command in Docker container
-        run: |
-           Get-Command unity.exe | Select-Object -ExpandProperty Source
+        run: Get-Command unity.exe | Select-Object -ExpandProperty Source
       - name: list
-        run: | 
-          dir
+        run: dir
+      - name: Generate Project
+        run: unity -batchmode -projectPath . -logfile -
+
+  cleanup:
+    runs-on: self-hosted
+    needs: tests
+    steps:
+      - name: cleanup
+        run: rm -r -- !(.) .*
