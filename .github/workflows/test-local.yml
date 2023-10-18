@@ -4,7 +4,7 @@ on:
   workflow_dispatch: {}
   push:
     branches:
-      - main # Replace with the branch name you want to trigger on
+      - master
   pull_request:
     types:
       - opened
@@ -29,15 +29,15 @@ jobs:
           fi
       - name: Check if Unity is in PATH Windows
         if: runner.os == 'Windows'
+        shell: powershell
         run: |
-          where.exe unity
-          if %ERRORLEVEL%==0 (
-            set UNITY_PATH=where.exe unity
-            echo Unity is installed and is located at: %UNITY_PATH%
-          ) else (
-            echo Unity is not installed or not in the PATH.
+          $UNITY_PATH = Get-Command -ErrorAction SilentlyContinue -Name 'unity.exe' | Select-Object -ExpandProperty Source
+          if ($UNITY_PATH) {
+            Write-Host "Unity is installed and is located at: $UNITY_PATH"
+          } else {
+            Write-Host "Unity is not installed or not in the PATH."
             exit 1  # This line will stop the workflow with a failure status.
-          )
+          }
       - name: Generate Project
         run: unity -batchmode -projectPath . -logfile -
 
