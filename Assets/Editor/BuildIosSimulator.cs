@@ -6,6 +6,10 @@ namespace Editor
 {
     public class BuildIosSimulator
     {
+        /// <summary>
+        /// This is a summary description of the MyMethod.
+        /// </summary>
+        /// <returns>Description of the return value.</returns>
         [MenuItem("Build/Build iOS Simulator")]
         static void BuildiOS()
         {

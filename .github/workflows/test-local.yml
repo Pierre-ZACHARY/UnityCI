@@ -12,17 +12,40 @@ on:
       - closed
       
 jobs:
-  tests:
+  setup:
     runs-on: self-hosted
     steps:
       - name: Check out code
         uses: actions/checkout@v2
-      - name: Run a command in Docker container
-        run: Get-Command unity.exe | Select-Object -ExpandProperty Source
-      - name: list
-        run: dir
+      - name: Check if Unity is in PATH Linux
+        if: runner.os != 'Windows'
+        run: |
+          UNITY_PATH=$(which unity)
+          if [ -n "$UNITY_PATH" ]; then
+            echo "Unity is installed and is located at: $UNITY_PATH"
+          else
+            echo "Unity is not installed or not in the PATH."
+            exit 1  # This line will stop the workflow with a failure status.
+          fi
+      - name: Check if Unity is in PATH Windows
+        if: runner.os == 'Windows'
+        run: |
+          where.exe unity
+          if %ERRORLEVEL%==0 (
+            set UNITY_PATH=where.exe unity
+            echo Unity is installed and is located at: %UNITY_PATH%
+          ) else (
+            echo Unity is not installed or not in the PATH.
+            exit 1  # This line will stop the workflow with a failure status.
+          )
       - name: Generate Project
         run: unity -batchmode -projectPath . -logfile -
+
+  tests:
+    runs-on: self-hosted
+    steps:
+      - name: list
+        run: dir
 
   cleanup:
     runs-on: self-hosted
